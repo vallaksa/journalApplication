@@ -4,6 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import net.engineeringdigest.journalApp.entity.User;
 import net.engineeringdigest.journalApp.repository.UserRepository;
 import org.bson.types.ObjectId;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,6 +22,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public void saveUser(User user) {
@@ -27,10 +30,19 @@ public class UserService {
 
     }
 
-    public void saveNewUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(Arrays.asList("USER"));
-        userRepository.save(user);
+    public boolean saveNewUser(User user) {
+        try {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setRoles(Arrays.asList("USER"));
+            userRepository.save(user);
+            return true;
+        } catch (Exception e) {
+            log.error("Hi this is logger");
+            log.warn("Hi this is logger");
+            log.info("Hi this is logger");
+            log.debug("Hi this is new logger");
+            return false;
+        }
 
     }
 

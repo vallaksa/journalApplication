@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# journalApplication
-This is a SpringBoot Project
-=======
 # Journal Application  
 
 ## Overview  
@@ -47,4 +43,3 @@ This is a journal application developed using **Spring Boot** and **Java**, with
    ```bash  
    git clone <repository-url>  
    cd journal-application  
->>>>>>> dev
